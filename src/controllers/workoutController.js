@@ -1,8 +1,9 @@
 const workoutService = require("../services/workoutService");
+const getOrderedResult = require("../database/call");
 
 const getAllWorkouts = (req, res) => {
-  const allWorkouts = workoutService.getAllWorkouts();
-  res.send({ status: "OK", data: allWorkouts });
+  let result = getOrderedResult();
+  res.status(200).json(result);
 };
 
 const getOneWorkout = (req, res) => {

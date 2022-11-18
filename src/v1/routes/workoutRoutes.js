@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const workoutController = require("../../controllers/workoutController");
-const verify = require("../../middleware/verify");
+const verifyToken = require("../../middleware/verify");
+const verifyContentType = require("../../middleware/verifyContentType");
 
 router
-  .get("/", verify, workoutController.getAllWorkouts)
+  .get("/", verifyContentType, verifyToken, workoutController.getAllWorkouts)
   .get("/:workoutId", workoutController.getOneWorkout);
 
 module.exports = router;
